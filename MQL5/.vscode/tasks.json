@@ -1,0 +1,43 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile-MQL",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "./Compile-MQL.ps1", 
+                "'C:\\Program Files\\MetaTrader 5 - EXNESS\\metaeditor64.exe'",
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {   //set the label ID for the MQL5 Reference context-sensitive help to be launched
+            "label": "launch_offline_help",
+            "type": "shell",
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false
+            },
+            "command": "hh.exe",
+            "args": [
+                "mk:@MSITStore:C:\\Users\\Administrator\\AppData\\Roaming\\MetaQuotes\\Terminal\\Help\\mql5_chinese.chm::/${selectedText}.htm"
+            ]
+        }
+    ]
+}
