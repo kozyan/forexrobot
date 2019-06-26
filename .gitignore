@@ -1,3 +1,11 @@
 *.log
 logs
 bases
+Files
+Charts
+
+profiles/deleted/
+
+*.index
+
+*.dat
