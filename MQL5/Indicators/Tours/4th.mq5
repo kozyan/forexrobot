@@ -1,3 +1,27 @@
+#include <winapi/WinUser.mqh>
+
+#define MACRO
+
+#define MUL(a, b) (a * b)
+
+void func1() {
+#ifdef MACRO
+  Print("MACRO is defined in ", __FUNCTION__);
+#else
+  Print("MACRO is not defined in ", __FUNCTION__);
+#endif
+}
+
+#undef MACRO
+
+void func2() {
+#ifdef MACRO
+  Print("MACRO is defined in ", __FUNCTION__);
+#else
+  Print("MACRO is not defined in ", __FUNCTION__);
+#endif
+}
+
 class CDemoClass {
 private:
   double m_array[];
@@ -17,6 +41,15 @@ void CDemoClass::SetArray(double &array[]) {
 }
 
 CDemoClass *CDemoClass::GetDemoClass(void) { return GetPointer(this); }
+
+int Counter() {
+  static int count;
+  count++;
+
+  if (count % 100 == 0)
+    Print("Function counter has been called ", count, " times.");
+  return count;
+}
 
 void OnStart() {
   char x = 'B';
@@ -43,8 +76,36 @@ void OnStart() {
   int fibNum;
   int i = 0, first = 0, second = 1;
   do {
-    /* code */
+    fibNum = first + second;
+    Print("i= ", i, " fibonacci num: ", fibNum);
+    first = second;
+    second = fibNum;
+
+    i++;
+
   } while (i < counterFibonacci && !IsStopped());
 
   //++++++++++++++++++++++++++++++++++++++++++++++++++++ fib end
+
+  CDemoClass *demo = new CDemoClass();
+
+  delete demo;
+  demo = NULL;
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  int c = 345;
+  for (int j = 0; j < 1000; j++) {
+    c = Counter();
+  }
+
+  Print("c =", c);
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ MACRO
+  func1();
+  func2();
+
+  double v = MUL(2, 3);
+  Print("v = ", v);
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ MACRO END
 }

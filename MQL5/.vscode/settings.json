@@ -3,4 +3,8 @@
     "editor.formatOnSave": true,
     "C_Cpp.clang_format_fallbackStyle": "LLVM",
     "C_Cpp.clang_format_sortIncludes": true,
+    "cSpell.words": [
+        "XDISTANCE",
+        "jintian"
+    ],
 }
