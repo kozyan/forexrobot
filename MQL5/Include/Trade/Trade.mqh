@@ -1,10 +1,9 @@
 //+------------------------------------------------------------------+
 //|                                                        Trade.mqh |
-//|                   Copyright 2009-2017, MetaQuotes Software Corp. |
+//|                   Copyright 2009-2020, MetaQuotes Software Corp. |
 //|                                              http://www.mql5.com |
 //+------------------------------------------------------------------+
 #include <Object.mqh>
-#include "SymbolInfo.mqh"
 #include "OrderInfo.mqh"
 #include "HistoryOrderInfo.mqh"
 #include "PositionInfo.mqh"
@@ -26,12 +25,12 @@ enum ENUM_LOG_LEVELS
 class CTrade : public CObject
   {
 protected:
-   MqlTradeRequest   m_request;         // request data
-   MqlTradeResult    m_result;          // result data
-   MqlTradeCheckResult m_check_result;  // result check data
-   bool              m_async_mode;      // trade mode
-   ulong             m_magic;           // expert magic number
-   ulong             m_deviation;       // deviation default
+   MqlTradeRequest   m_request;              // request data
+   MqlTradeResult    m_result;               // result data
+   MqlTradeCheckResult m_check_result;       // result check data
+   bool              m_async_mode;           // trade mode
+   ulong             m_magic;                // expert magic number
+   ulong             m_deviation;            // deviation default
    ENUM_ORDER_TYPE_FILLING m_type_filling;
    ENUM_ACCOUNT_MARGIN_MODE m_margin_mode;
    //---
@@ -41,57 +40,57 @@ public:
                      CTrade(void);
                     ~CTrade(void);
    //--- methods of access to protected data
-   void              LogLevel(const ENUM_LOG_LEVELS log_level)   { m_log_level=log_level;               }
+   void              LogLevel(const ENUM_LOG_LEVELS log_level) { m_log_level=log_level; }
    void              Request(MqlTradeRequest &request) const;
-   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void)          const { return(m_request.action);            }
+   ENUM_TRADE_REQUEST_ACTIONS RequestAction(void)   const { return(m_request.action);       }
    string            RequestActionDescription(void) const;
-   ulong             RequestMagic(void)                    const { return(m_request.magic);             }
-   ulong             RequestOrder(void)                    const { return(m_request.order);             }
-   ulong             RequestPosition(void)                 const { return(m_request.position);          }
-   ulong             RequestPositionBy(void)               const { return(m_request.position_by);       }
-   string            RequestSymbol(void)                   const { return(m_request.symbol);            }
-   double            RequestVolume(void)                   const { return(m_request.volume);            }
-   double            RequestPrice(void)                    const { return(m_request.price);             }
-   double            RequestStopLimit(void)                const { return(m_request.stoplimit);         }
-   double            RequestSL(void)                       const { return(m_request.sl);                }
-   double            RequestTP(void)                       const { return(m_request.tp);                }
-   ulong             RequestDeviation(void)                const { return(m_request.deviation);         }
-   ENUM_ORDER_TYPE   RequestType(void)                     const { return(m_request.type);              }
+   ulong             RequestMagic(void)             const { return(m_request.magic);        }
+   ulong             RequestOrder(void)             const { return(m_request.order);        }
+   ulong             RequestPosition(void)          const { return(m_request.position);     }
+   ulong             RequestPositionBy(void)        const { return(m_request.position_by);  }
+   string            RequestSymbol(void)            const { return(m_request.symbol);       }
+   double            RequestVolume(void)            const { return(m_request.volume);       }
+   double            RequestPrice(void)             const { return(m_request.price);        }
+   double            RequestStopLimit(void)         const { return(m_request.stoplimit);    }
+   double            RequestSL(void)                const { return(m_request.sl);           }
+   double            RequestTP(void)                const { return(m_request.tp);           }
+   ulong             RequestDeviation(void)         const { return(m_request.deviation);    }
+   ENUM_ORDER_TYPE   RequestType(void)              const { return(m_request.type);         }
    string            RequestTypeDescription(void) const;
-   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void)        const { return(m_request.type_filling);      }
+   ENUM_ORDER_TYPE_FILLING RequestTypeFilling(void) const { return(m_request.type_filling); }
    string            RequestTypeFillingDescription(void) const;
-   ENUM_ORDER_TYPE_TIME RequestTypeTime(void)              const { return(m_request.type_time);         }
+   ENUM_ORDER_TYPE_TIME RequestTypeTime(void)       const { return(m_request.type_time);    }
    string            RequestTypeTimeDescription(void) const;
-   datetime          RequestExpiration(void)               const { return(m_request.expiration);        }
-   string            RequestComment(void)                  const { return(m_request.comment);           }
+   datetime          RequestExpiration(void)        const { return(m_request.expiration);   }
+   string            RequestComment(void)           const { return(m_request.comment);      }
    //---
    void              Result(MqlTradeResult &result) const;
-   uint              ResultRetcode(void)                   const { return(m_result.retcode);            }
+   uint              ResultRetcode(void)         const { return(m_result.retcode);          }
    string            ResultRetcodeDescription(void) const;
-   int               ResultRetcodeExternal(void)           const { return(m_result.retcode_external);   }
-   ulong             ResultDeal(void)                      const { return(m_result.deal);               }
-   ulong             ResultOrder(void)                     const { return(m_result.order);              }
-   double            ResultVolume(void)                    const { return(m_result.volume);             }
-   double            ResultPrice(void)                     const { return(m_result.price);              }
-   double            ResultBid(void)                       const { return(m_result.bid);                }
-   double            ResultAsk(void)                       const { return(m_result.ask);                }
-   string            ResultComment(void)                   const { return(m_result.comment);            }
+   int               ResultRetcodeExternal(void) const { return(m_result.retcode_external); }
+   ulong             ResultDeal(void)            const { return(m_result.deal);             }
+   ulong             ResultOrder(void)           const { return(m_result.order);            }
+   double            ResultVolume(void)          const { return(m_result.volume);           }
+   double            ResultPrice(void)           const { return(m_result.price);            }
+   double            ResultBid(void)             const { return(m_result.bid);              }
+   double            ResultAsk(void)             const { return(m_result.ask);              }
+   string            ResultComment(void)         const { return(m_result.comment);          }
    //---
    void              CheckResult(MqlTradeCheckResult &check_result) const;
-   uint              CheckResultRetcode(void)              const { return(m_check_result.retcode);      }
+   uint              CheckResultRetcode(void)     const { return(m_check_result.retcode);      }
    string            CheckResultRetcodeDescription(void) const;
-   double            CheckResultBalance(void)              const { return(m_check_result.balance);      }
-   double            CheckResultEquity(void)               const { return(m_check_result.equity);       }
-   double            CheckResultProfit(void)               const { return(m_check_result.profit);       }
-   double            CheckResultMargin(void)               const { return(m_check_result.margin);       }
-   double            CheckResultMarginFree(void)           const { return(m_check_result.margin_free);  }
-   double            CheckResultMarginLevel(void)          const { return(m_check_result.margin_level); }
-   string            CheckResultComment(void)              const { return(m_check_result.comment);      }
+   double            CheckResultBalance(void)     const { return(m_check_result.balance);      }
+   double            CheckResultEquity(void)      const { return(m_check_result.equity);       }
+   double            CheckResultProfit(void)      const { return(m_check_result.profit);       }
+   double            CheckResultMargin(void)      const { return(m_check_result.margin);       }
+   double            CheckResultMarginFree(void)  const { return(m_check_result.margin_free);  }
+   double            CheckResultMarginLevel(void) const { return(m_check_result.margin_level); }
+   string            CheckResultComment(void)     const { return(m_check_result.comment);      }
    //--- trade methods
-   void              SetAsyncMode(const bool mode)               { m_async_mode=mode;                   }
-   void              SetExpertMagicNumber(const ulong magic)     { m_magic=magic;                       }
-   void              SetDeviationInPoints(const ulong deviation) { m_deviation=deviation;               }
-   void              SetTypeFilling(const ENUM_ORDER_TYPE_FILLING filling) { m_type_filling=filling;    }
+   void              SetAsyncMode(const bool mode)               { m_async_mode=mode;                }
+   void              SetExpertMagicNumber(const ulong magic)     { m_magic=magic;                    }
+   void              SetDeviationInPoints(const ulong deviation) { m_deviation=deviation;            }
+   void              SetTypeFilling(const ENUM_ORDER_TYPE_FILLING filling) { m_type_filling=filling; }
    bool              SetTypeFillingBySymbol(const string symbol);
    void              SetMarginMode(void) { m_margin_mode=(ENUM_ACCOUNT_MARGIN_MODE)AccountInfoInteger(ACCOUNT_MARGIN_MODE); }
    //--- methods for working with positions
@@ -160,7 +159,6 @@ CTrade::CTrade(void) : m_async_mode(false),
                        m_deviation(10),
                        m_type_filling(ORDER_FILLING_FOK),
                        m_log_level(LOG_LEVEL_ERRORS)
-
   {
    SetMarginMode();
 //--- initialize protected data
@@ -291,7 +289,7 @@ void CTrade::CheckResult(MqlTradeCheckResult &check_result) const
 //+------------------------------------------------------------------+
 string CTrade::CheckResultRetcodeDescription(void) const
   {
-   string str;
+   string         str;
    MqlTradeResult result;
 //---
    result.retcode=m_check_result.retcode;
@@ -447,7 +445,8 @@ bool CTrade::PositionClose(const string symbol,const ulong deviation)
       //--- order send
       if(!OrderSend(m_request,m_result))
         {
-         if(--retry_count!=0) continue;
+         if(--retry_count!=0)
+            continue;
          if(retcode==TRADE_RETCODE_DONE_PARTIAL)
             m_result.retcode=retcode;
          return(false);
@@ -656,8 +655,8 @@ bool CTrade::OrderOpen(const string symbol,const ENUM_ORDER_TYPE order_type,cons
 //--- clean
    ClearStructures();
 //--- check filling
-   if(!FillingCheck(symbol))  
-      return(false);    
+   if(!FillingCheck(symbol))
+      return(false);
 //--- check order type
    if(order_type==ORDER_TYPE_BUY || order_type==ORDER_TYPE_SELL)
      {
@@ -794,7 +793,7 @@ void CTrade::ClearStructures(void)
 //+------------------------------------------------------------------+
 bool CTrade::IsStopped(const string function)
   {
-   if(!IsStopped())
+   if(!::IsStopped())
       return(false);
 //--- MQL5 program is stopped
    PrintFormat("%s: MQL5 program is stopped. Trading is disabled",function);
@@ -806,7 +805,6 @@ bool CTrade::IsStopped(const string function)
 //+------------------------------------------------------------------+
 bool CTrade::Buy(const double volume,const string symbol=NULL,double price=0.0,const double sl=0.0,const double tp=0.0,const string comment="")
   {
-   CSymbolInfo sym;
 //--- check volume
    if(volume<=0.0)
      {
@@ -814,22 +812,18 @@ bool CTrade::Buy(const double volume,const string symbol=NULL,double price=0.0,c
       return(false);
      }
 //--- check symbol
-   sym.Name((symbol==NULL)?Symbol():symbol);
+   string symbol_name=(symbol==NULL) ? _Symbol : symbol;
 //--- check price
    if(price==0.0)
-     {
-      sym.RefreshRates();
-      price=sym.Ask();
-     }
+      price=SymbolInfoDouble(symbol_name,SYMBOL_ASK);
 //---
-   return(PositionOpen(sym.Name(),ORDER_TYPE_BUY,volume,price,sl,tp,comment));
+   return(PositionOpen(symbol_name,ORDER_TYPE_BUY,volume,price,sl,tp,comment));
   }
 //+------------------------------------------------------------------+
 //| Sell operation                                                   |
 //+------------------------------------------------------------------+
 bool CTrade::Sell(const double volume,const string symbol=NULL,double price=0.0,const double sl=0.0,const double tp=0.0,const string comment="")
   {
-   CSymbolInfo sym;
 //--- check volume
    if(volume<=0.0)
      {
@@ -837,15 +831,12 @@ bool CTrade::Sell(const double volume,const string symbol=NULL,double price=0.0,
       return(false);
      }
 //--- check symbol
-   sym.Name((symbol==NULL)?Symbol():symbol);
+   string symbol_name=(symbol==NULL) ? _Symbol : symbol;
 //--- check price
    if(price==0.0)
-     {
-      sym.RefreshRates();
-      price=sym.Bid();
-     }
+      price=SymbolInfoDouble(symbol_name,SYMBOL_BID);
 //---
-   return(PositionOpen(sym.Name(),ORDER_TYPE_SELL,volume,price,sl,tp,comment));
+   return(PositionOpen(symbol_name,ORDER_TYPE_SELL,volume,price,sl,tp,comment));
   }
 //+------------------------------------------------------------------+
 //| Send BUY_LIMIT order                                             |
@@ -853,23 +844,17 @@ bool CTrade::Sell(const double volume,const string symbol=NULL,double price=0.0,
 bool CTrade::BuyLimit(const double volume,const double price,const string symbol=NULL,const double sl=0.0,const double tp=0.0,
                       const ENUM_ORDER_TYPE_TIME type_time=ORDER_TIME_GTC,const datetime expiration=0,const string comment="")
   {
-   string sym;
+   string symbol_name;
 //--- check volume
    if(volume<=0.0)
      {
       m_result.retcode=TRADE_RETCODE_INVALID_VOLUME;
       return(false);
      }
-//--- check price
-   if(price==0.0)
-     {
-      m_result.retcode=TRADE_RETCODE_INVALID_PRICE;
-      return(false);
-     }
 //--- check symbol
-   sym=(symbol==NULL)?Symbol():symbol;
+   symbol_name=(symbol==NULL)?Symbol():symbol;
 //--- send "BUY_LIMIT" order
-   return(OrderOpen(sym,ORDER_TYPE_BUY_LIMIT,volume,0.0,price,sl,tp,type_time,expiration,comment));
+   return(OrderOpen(symbol_name,ORDER_TYPE_BUY_LIMIT,volume,0.0,price,sl,tp,type_time,expiration,comment));
   }
 //+------------------------------------------------------------------+
 //| Send BUY_STOP order                                              |
@@ -877,23 +862,17 @@ bool CTrade::BuyLimit(const double volume,const double price,const string symbol
 bool CTrade::BuyStop(const double volume,const double price,const string symbol=NULL,const double sl=0.0,const double tp=0.0,
                      const ENUM_ORDER_TYPE_TIME type_time=ORDER_TIME_GTC,const datetime expiration=0,const string comment="")
   {
-   string sym;
+   string symbol_name;
 //--- check volume
    if(volume<=0.0)
      {
       m_result.retcode=TRADE_RETCODE_INVALID_VOLUME;
       return(false);
      }
-//--- check price
-   if(price==0.0)
-     {
-      m_result.retcode=TRADE_RETCODE_INVALID_PRICE;
-      return(false);
-     }
 //--- check symbol
-   sym=(symbol==NULL)?Symbol():symbol;
+   symbol_name=(symbol==NULL)?Symbol():symbol;
 //--- send "BUY_STOP" order
-   return(OrderOpen(sym,ORDER_TYPE_BUY_STOP,volume,0.0,price,sl,tp,type_time,expiration,comment));
+   return(OrderOpen(symbol_name,ORDER_TYPE_BUY_STOP,volume,0.0,price,sl,tp,type_time,expiration,comment));
   }
 //+------------------------------------------------------------------+
 //| Send SELL_LIMIT order                                            |
@@ -901,23 +880,17 @@ bool CTrade::BuyStop(const double volume,const double price,const string symbol=
 bool CTrade::SellLimit(const double volume,const double price,const string symbol=NULL,const double sl=0.0,const double tp=0.0,
                        const ENUM_ORDER_TYPE_TIME type_time=ORDER_TIME_GTC,const datetime expiration=0,const string comment="")
   {
-   string sym;
+   string symbol_name;
 //--- check volume
    if(volume<=0.0)
      {
       m_result.retcode=TRADE_RETCODE_INVALID_VOLUME;
       return(false);
      }
-//--- check price
-   if(price==0.0)
-     {
-      m_result.retcode=TRADE_RETCODE_INVALID_PRICE;
-      return(false);
-     }
 //--- check symbol
-   sym=(symbol==NULL)?Symbol():symbol;
+   symbol_name=(symbol==NULL)?Symbol():symbol;
 //--- send "SELL_LIMIT" order
-   return(OrderOpen(sym,ORDER_TYPE_SELL_LIMIT,volume,0.0,price,sl,tp,type_time,expiration,comment));
+   return(OrderOpen(symbol_name,ORDER_TYPE_SELL_LIMIT,volume,0.0,price,sl,tp,type_time,expiration,comment));
   }
 //+------------------------------------------------------------------+
 //| Send SELL_STOP order                                             |
@@ -925,40 +898,34 @@ bool CTrade::SellLimit(const double volume,const double price,const string symbo
 bool CTrade::SellStop(const double volume,const double price,const string symbol=NULL,const double sl=0.0,const double tp=0.0,
                       const ENUM_ORDER_TYPE_TIME type_time=ORDER_TIME_GTC,const datetime expiration=0,const string comment="")
   {
-   string sym;
+   string symbol_name;
 //--- check volume
    if(volume<=0.0)
      {
       m_result.retcode=TRADE_RETCODE_INVALID_VOLUME;
       return(false);
      }
-//--- check price
-   if(price==0.0)
-     {
-      m_result.retcode=TRADE_RETCODE_INVALID_PRICE;
-      return(false);
-     }
 //--- check symbol
-   sym=(symbol==NULL)?Symbol():symbol;
+   symbol_name=(symbol==NULL)?Symbol():symbol;
 //--- send "SELL_STOP" order
-   return(OrderOpen(sym,ORDER_TYPE_SELL_STOP,volume,0.0,price,sl,tp,type_time,expiration,comment));
+   return(OrderOpen(symbol_name,ORDER_TYPE_SELL_STOP,volume,0.0,price,sl,tp,type_time,expiration,comment));
   }
 //+------------------------------------------------------------------+
 //| Converts the position type to text                               |
 //+------------------------------------------------------------------+
 string CTrade::FormatPositionType(string &str,const uint type) const
   {
-//--- clean
-   str="";
 //--- see the type
    switch(type)
      {
-      case POSITION_TYPE_BUY : str="buy";  break;
-      case POSITION_TYPE_SELL: str="sell"; break;
-
+      case POSITION_TYPE_BUY:
+         str="buy";
+         break;
+      case POSITION_TYPE_SELL:
+         str="sell";
+         break;
       default:
          str="unknown position type "+(string)type;
-         break;
      }
 //--- return the result
    return(str);
@@ -968,23 +935,35 @@ string CTrade::FormatPositionType(string &str,const uint type) const
 //+------------------------------------------------------------------+
 string CTrade::FormatOrderType(string &str,const uint type) const
   {
-//--- clean
-   str="";
 //--- see the type
    switch(type)
      {
-      case ORDER_TYPE_BUY            : str="buy";             break;
-      case ORDER_TYPE_SELL           : str="sell";            break;
-      case ORDER_TYPE_BUY_LIMIT      : str="buy limit";       break;
-      case ORDER_TYPE_SELL_LIMIT     : str="sell limit";      break;
-      case ORDER_TYPE_BUY_STOP       : str="buy stop";        break;
-      case ORDER_TYPE_SELL_STOP      : str="sell stop";       break;
-      case ORDER_TYPE_BUY_STOP_LIMIT : str="buy stop limit";  break;
-      case ORDER_TYPE_SELL_STOP_LIMIT: str="sell stop limit"; break;
-
+      case ORDER_TYPE_BUY:
+         str="buy";
+         break;
+      case ORDER_TYPE_SELL:
+         str="sell";
+         break;
+      case ORDER_TYPE_BUY_LIMIT:
+         str="buy limit";
+         break;
+      case ORDER_TYPE_SELL_LIMIT:
+         str="sell limit";
+         break;
+      case ORDER_TYPE_BUY_STOP:
+         str="buy stop";
+         break;
+      case ORDER_TYPE_SELL_STOP:
+         str="sell stop";
+         break;
+      case ORDER_TYPE_BUY_STOP_LIMIT:
+         str="buy stop limit";
+         break;
+      case ORDER_TYPE_SELL_STOP_LIMIT:
+         str="sell stop limit";
+         break;
       default:
          str="unknown order type "+(string)type;
-         break;
      }
 //--- return the result
    return(str);
@@ -994,15 +973,18 @@ string CTrade::FormatOrderType(string &str,const uint type) const
 //+------------------------------------------------------------------+
 string CTrade::FormatOrderTypeFilling(string &str,const uint type) const
   {
-//--- clean
-   str="";
 //--- see the type
    switch(type)
      {
-      case ORDER_FILLING_RETURN: str="return remainder"; break;
-      case ORDER_FILLING_IOC   : str="cancel remainder"; break;
-      case ORDER_FILLING_FOK   : str="fill or kill";     break;
-
+      case ORDER_FILLING_RETURN:
+         str="return remainder";
+         break;
+      case ORDER_FILLING_IOC:
+         str="cancel remainder";
+         break;
+      case ORDER_FILLING_FOK:
+         str="fill or kill";
+         break;
       default:
          str="unknown type filling "+(string)type;
          break;
@@ -1015,19 +997,23 @@ string CTrade::FormatOrderTypeFilling(string &str,const uint type) const
 //+------------------------------------------------------------------+
 string CTrade::FormatOrderTypeTime(string &str,const uint type) const
   {
-//--- clean
-   str="";
 //--- see the type
    switch(type)
      {
-      case ORDER_TIME_GTC          : str="gtc";           break;
-      case ORDER_TIME_DAY          : str="day";           break;
-      case ORDER_TIME_SPECIFIED    : str="specified";     break;
-      case ORDER_TIME_SPECIFIED_DAY: str="specified day"; break;
-
+      case ORDER_TIME_GTC:
+         str="gtc";
+         break;
+      case ORDER_TIME_DAY:
+         str="day";
+         break;
+      case ORDER_TIME_SPECIFIED:
+         str="specified";
+         break;
+      case ORDER_TIME_SPECIFIED_DAY:
+         str="specified day";
+         break;
       default:
          str="unknown type time "+(string)type;
-         break;
      }
 //--- return the result
    return(str);
@@ -1038,8 +1024,6 @@ string CTrade::FormatOrderTypeTime(string &str,const uint type) const
 string CTrade::FormatOrderPrice(string &str,const double price_order,const double price_trigger,const uint digits) const
   {
    string price,trigger;
-//--- clean
-   str="";
 //--- Is there its trigger price?
    if(price_trigger)
      {
@@ -1057,34 +1041,35 @@ string CTrade::FormatOrderPrice(string &str,const double price_order,const doubl
 //+------------------------------------------------------------------+
 string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
   {
-   string      type,price,price_new;
-   string      tmp;
-   CSymbolInfo symbol;
+   string type,price,price_new;
+   string tmp_string;
+   long   tmp_long;
 //--- clean
    str="";
 //--- set up
-   int digits=5;
-   if(request.symbol!=NULL)
-     {
-      if(symbol.Name(request.symbol))
-         digits=symbol.Digits();
-     }
+   string symbol_name=(request.symbol==NULL) ? _Symbol : request.symbol;
+   int    digits=_Digits;
+   ENUM_SYMBOL_TRADE_EXECUTION trade_execution=0;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_DIGITS,tmp_long))
+      digits=(int)tmp_long;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_TRADE_EXEMODE,tmp_long))
+      trade_execution=(ENUM_SYMBOL_TRADE_EXECUTION)tmp_long;
 //--- see what is wanted
    switch(request.action)
      {
       //--- instant execution of a deal
       case TRADE_ACTION_DEAL:
-         switch(symbol.TradeExecution())
+         switch(trade_execution)
            {
             //--- request execution
             case SYMBOL_TRADE_EXECUTION_REQUEST:
                if(IsHedging() && request.position!=0)
-               str=StringFormat("request %s %s position #%I64u %s at %s",
-                                FormatOrderType(type,request.type),
-                                DoubleToString(request.volume,2),
-                                request.position,
-                                request.symbol,
-                                DoubleToString(request.price,digits));
+                  str=StringFormat("request %s %s position #%I64u %s at %s",
+                                   FormatOrderType(type,request.type),
+                                   DoubleToString(request.volume,2),
+                                   request.position,
+                                   request.symbol,
+                                   DoubleToString(request.price,digits));
                else
                   str=StringFormat("request %s %s %s at %s",
                                    FormatOrderType(type,request.type),
@@ -1094,24 +1079,24 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                //--- Is there SL or TP?
                if(request.sl!=0.0)
                  {
-                  tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+                  str+=tmp_string;
                  }
                if(request.tp!=0.0)
                  {
-                  tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+                  str+=tmp_string;
                  }
                break;
-               //--- instant execution
+            //--- instant execution
             case SYMBOL_TRADE_EXECUTION_INSTANT:
                if(IsHedging() && request.position!=0)
-               str=StringFormat("instant %s %s position #%I64u %s at %s",
-                                FormatOrderType(type,request.type),
-                                DoubleToString(request.volume,2),
-                                request.position,
-                                request.symbol,
-                                DoubleToString(request.price,digits));
+                  str=StringFormat("instant %s %s position #%I64u %s at %s",
+                                   FormatOrderType(type,request.type),
+                                   DoubleToString(request.volume,2),
+                                   request.position,
+                                   request.symbol,
+                                   DoubleToString(request.price,digits));
                else
                   str=StringFormat("instant %s %s %s at %s",
                                    FormatOrderType(type,request.type),
@@ -1121,23 +1106,23 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                //--- Is there SL or TP?
                if(request.sl!=0.0)
                  {
-                  tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+                  str+=tmp_string;
                  }
                if(request.tp!=0.0)
                  {
-                  tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+                  str+=tmp_string;
                  }
                break;
-               //--- market execution
+            //--- market execution
             case SYMBOL_TRADE_EXECUTION_MARKET:
                if(IsHedging() && request.position!=0)
-               str=StringFormat("market %s %s position #%I64u %s",
-                                FormatOrderType(type,request.type),
-                                DoubleToString(request.volume,2),
-                                request.position,
-                                request.symbol);
+                  str=StringFormat("market %s %s position #%I64u %s",
+                                   FormatOrderType(type,request.type),
+                                   DoubleToString(request.volume,2),
+                                   request.position,
+                                   request.symbol);
                else
                   str=StringFormat("market %s %s %s",
                                    FormatOrderType(type,request.type),
@@ -1146,23 +1131,23 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                //--- Is there SL or TP?
                if(request.sl!=0.0)
                  {
-                  tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+                  str+=tmp_string;
                  }
                if(request.tp!=0.0)
                  {
-                  tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+                  str+=tmp_string;
                  }
                break;
-               //--- exchange execution
+            //--- exchange execution
             case SYMBOL_TRADE_EXECUTION_EXCHANGE:
                if(IsHedging() && request.position!=0)
-               str=StringFormat("exchange %s %s position #%I64u %s",
-                                FormatOrderType(type,request.type),
-                                DoubleToString(request.volume,2),
-                                request.position,
-                                request.symbol);
+                  str=StringFormat("exchange %s %s position #%I64u %s",
+                                   FormatOrderType(type,request.type),
+                                   DoubleToString(request.volume,2),
+                                   request.position,
+                                   request.symbol);
                else
                   str=StringFormat("exchange %s %s %s",
                                    FormatOrderType(type,request.type),
@@ -1171,47 +1156,47 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                //--- Is there SL or TP?
                if(request.sl!=0.0)
                  {
-                  tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+                  str+=tmp_string;
                  }
                if(request.tp!=0.0)
                  {
-                  tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-                  str+=tmp;
+                  tmp_string=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+                  str+=tmp_string;
                  }
                break;
            }
          //--- end of TRADE_ACTION_DEAL processing
          break;
 
-         //--- setting a pending order
+      //--- setting a pending order
       case TRADE_ACTION_PENDING:
          str=StringFormat("%s %s %s at %s",
                           FormatOrderType(type,request.type),
                           DoubleToString(request.volume,2),
                           request.symbol,
                           FormatOrderPrice(price,request.price,request.stoplimit,digits));
-      //--- Is there SL or TP?
-      if(request.sl!=0.0)
-        {
-         tmp=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
-         str+=tmp;
-        }
-      if(request.tp!=0.0)
-        {
-         tmp=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
-         str+=tmp;
-        }
-      break;
+         //--- Is there SL or TP?
+         if(request.sl!=0.0)
+           {
+            tmp_string=StringFormat(" sl: %s",DoubleToString(request.sl,digits));
+            str+=tmp_string;
+           }
+         if(request.tp!=0.0)
+           {
+            tmp_string=StringFormat(" tp: %s",DoubleToString(request.tp,digits));
+            str+=tmp_string;
+           }
+         break;
 
       //--- Setting SL/TP
       case TRADE_ACTION_SLTP:
          if(IsHedging() && request.position!=0)
-         str=StringFormat("modify position #%I64u %s (sl: %s, tp: %s)",
-                          request.position,
-                          request.symbol,
-                          DoubleToString(request.sl,digits),
-                          DoubleToString(request.tp,digits));
+            str=StringFormat("modify position #%I64u %s (sl: %s, tp: %s)",
+                             request.position,
+                             request.symbol,
+                             DoubleToString(request.sl,digits),
+                             DoubleToString(request.tp,digits));
          else
             str=StringFormat("modify %s (sl: %s, tp: %s)",
                              request.symbol,
@@ -1219,24 +1204,24 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
                              DoubleToString(request.tp,digits));
          break;
 
-         //--- modifying a pending order
+      //--- modifying a pending order
       case TRADE_ACTION_MODIFY:
          str=StringFormat("modify #%I64u at %s (sl: %s tp: %s)",
                           request.order,
                           FormatOrderPrice(price_new,request.price,request.stoplimit,digits),
                           DoubleToString(request.sl,digits),
                           DoubleToString(request.tp,digits));
-      break;
+         break;
 
       //--- deleting a pending order
       case TRADE_ACTION_REMOVE:
          str=StringFormat("cancel #%I64u",request.order);
          break;
 
-         //--- close by
+      //--- close by
       case TRADE_ACTION_CLOSE_BY:
          if(IsHedging() && request.position!=0)
-         str=StringFormat("close position #%I64u by #%I64u",request.position,request.position_by);
+            str=StringFormat("close position #%I64u by #%I64u",request.position,request.position_by);
          else
             str=StringFormat("wrong action close by (#%I64u by #%I64u)",request.position,request.position_by);
          break;
@@ -1253,16 +1238,15 @@ string CTrade::FormatRequest(string &str,const MqlTradeRequest &request) const
 //+------------------------------------------------------------------+
 string CTrade::FormatRequestResult(string &str,const MqlTradeRequest &request,const MqlTradeResult &result) const
   {
-   CSymbolInfo symbol;
-//--- clean
-   str="";
 //--- set up
-   int digits=5;
-   if(request.symbol!=NULL)
-     {
-      if(symbol.Name(request.symbol))
-         digits=symbol.Digits();
-     }
+   string symbol_name=(request.symbol==NULL) ? _Symbol : request.symbol;
+   int    digits=_Digits;
+   long   tmp_long;
+   ENUM_SYMBOL_TRADE_EXECUTION trade_execution=0;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_DIGITS,tmp_long))
+      digits=(int)tmp_long;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_TRADE_EXEMODE,tmp_long))
+      trade_execution=(ENUM_SYMBOL_TRADE_EXECUTION)tmp_long;
 //--- see the response code
    switch(result.retcode)
      {
@@ -1270,65 +1254,126 @@ string CTrade::FormatRequestResult(string &str,const MqlTradeRequest &request,co
          str=StringFormat("requote (%s/%s)",
                           DoubleToString(result.bid,digits),
                           DoubleToString(result.ask,digits));
-      break;
+         break;
 
       case TRADE_RETCODE_DONE:
-         if(request.action==TRADE_ACTION_DEAL && 
-            (symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_REQUEST || 
-            symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_INSTANT ||
-            symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_MARKET))
+         if(request.action==TRADE_ACTION_DEAL &&
+            (trade_execution==SYMBOL_TRADE_EXECUTION_REQUEST ||
+             trade_execution==SYMBOL_TRADE_EXECUTION_INSTANT ||
+             trade_execution==SYMBOL_TRADE_EXECUTION_MARKET))
             str=StringFormat("done at %s",DoubleToString(result.price,digits));
-      else
-         str="done";
-      break;
+         else
+            str="done";
+         break;
 
       case TRADE_RETCODE_DONE_PARTIAL:
-         if(request.action==TRADE_ACTION_DEAL && 
-            (symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_REQUEST || 
-            symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_INSTANT ||
-            symbol.TradeExecution()==SYMBOL_TRADE_EXECUTION_MARKET))
+         if(request.action==TRADE_ACTION_DEAL &&
+            (trade_execution==SYMBOL_TRADE_EXECUTION_REQUEST ||
+             trade_execution==SYMBOL_TRADE_EXECUTION_INSTANT ||
+             trade_execution==SYMBOL_TRADE_EXECUTION_MARKET))
             str=StringFormat("done partially %s at %s",
                              DoubleToString(result.volume,2),
                              DoubleToString(result.price,digits));
-      else
-         str=StringFormat("done partially %s",
-                          DoubleToString(result.volume,2));
-      break;
+         else
+            str=StringFormat("done partially %s",
+                             DoubleToString(result.volume,2));
+         break;
 
-      case TRADE_RETCODE_REJECT            : str="rejected";                        break;
-      case TRADE_RETCODE_CANCEL            : str="canceled";                        break;
-      case TRADE_RETCODE_PLACED            : str="placed";                          break;
-      case TRADE_RETCODE_ERROR             : str="common error";                    break;
-      case TRADE_RETCODE_TIMEOUT           : str="timeout";                         break;
-      case TRADE_RETCODE_INVALID           : str="invalid request";                 break;
-      case TRADE_RETCODE_INVALID_VOLUME    : str="invalid volume";                  break;
-      case TRADE_RETCODE_INVALID_PRICE     : str="invalid price";                   break;
-      case TRADE_RETCODE_INVALID_STOPS     : str="invalid stops";                   break;
-      case TRADE_RETCODE_TRADE_DISABLED    : str="trade disabled";                  break;
-      case TRADE_RETCODE_MARKET_CLOSED     : str="market closed";                   break;
-      case TRADE_RETCODE_NO_MONEY          : str="not enough money";                break;
-      case TRADE_RETCODE_PRICE_CHANGED     : str="price changed";                   break;
-      case TRADE_RETCODE_PRICE_OFF         : str="off quotes";                      break;
-      case TRADE_RETCODE_INVALID_EXPIRATION: str="invalid expiration";              break;
-      case TRADE_RETCODE_ORDER_CHANGED     : str="order changed";                   break;
-      case TRADE_RETCODE_TOO_MANY_REQUESTS : str="too many requests";               break;
-      case TRADE_RETCODE_NO_CHANGES        : str="no changes";                      break;
-      case TRADE_RETCODE_SERVER_DISABLES_AT: str="auto trading disabled by server"; break;
-      case TRADE_RETCODE_CLIENT_DISABLES_AT: str="auto trading disabled by client"; break;
-      case TRADE_RETCODE_LOCKED            : str="locked";                          break;
-      case TRADE_RETCODE_FROZEN            : str="frozen";                          break;
-      case TRADE_RETCODE_INVALID_FILL      : str="invalid fill";                    break;
-      case TRADE_RETCODE_CONNECTION        : str="no connection";                   break;
-      case TRADE_RETCODE_ONLY_REAL         : str="only real";                       break;
-      case TRADE_RETCODE_LIMIT_ORDERS      : str="limit orders";                    break;
-      case TRADE_RETCODE_LIMIT_VOLUME      : str="limit volume";                    break;
-      case TRADE_RETCODE_POSITION_CLOSED   : str="position closed";                 break;
-      case TRADE_RETCODE_INVALID_ORDER     : str="invalid order";                   break;
-      case TRADE_RETCODE_CLOSE_ORDER_EXIST : str="close order already exists";      break;
-      case TRADE_RETCODE_LIMIT_POSITIONS   : str="limit positions";                 break;
+      case TRADE_RETCODE_REJECT:
+         str="rejected";
+         break;
+      case TRADE_RETCODE_CANCEL:
+         str="canceled";
+         break;
+      case TRADE_RETCODE_PLACED:
+         str="placed";
+         break;
+      case TRADE_RETCODE_ERROR:
+         str="common error";
+         break;
+      case TRADE_RETCODE_TIMEOUT:
+         str="timeout";
+         break;
+      case TRADE_RETCODE_INVALID:
+         str="invalid request";
+         break;
+      case TRADE_RETCODE_INVALID_VOLUME:
+         str="invalid volume";
+         break;
+      case TRADE_RETCODE_INVALID_PRICE:
+         str="invalid price";
+         break;
+      case TRADE_RETCODE_INVALID_STOPS:
+         str="invalid stops";
+         break;
+      case TRADE_RETCODE_TRADE_DISABLED:
+         str="trade disabled";
+         break;
+      case TRADE_RETCODE_MARKET_CLOSED:
+         str="market closed";
+         break;
+      case TRADE_RETCODE_NO_MONEY:
+         str="not enough money";
+         break;
+      case TRADE_RETCODE_PRICE_CHANGED:
+         str="price changed";
+         break;
+      case TRADE_RETCODE_PRICE_OFF:
+         str="off quotes";
+         break;
+      case TRADE_RETCODE_INVALID_EXPIRATION:
+         str="invalid expiration";
+         break;
+      case TRADE_RETCODE_ORDER_CHANGED:
+         str="order changed";
+         break;
+      case TRADE_RETCODE_TOO_MANY_REQUESTS:
+         str="too many requests";
+         break;
+      case TRADE_RETCODE_NO_CHANGES:
+         str="no changes";
+         break;
+      case TRADE_RETCODE_SERVER_DISABLES_AT:
+         str="auto trading disabled by server";
+         break;
+      case TRADE_RETCODE_CLIENT_DISABLES_AT:
+         str="auto trading disabled by client";
+         break;
+      case TRADE_RETCODE_LOCKED:
+         str="locked";
+         break;
+      case TRADE_RETCODE_FROZEN:
+         str="frozen";
+         break;
+      case TRADE_RETCODE_INVALID_FILL:
+         str="invalid fill";
+         break;
+      case TRADE_RETCODE_CONNECTION:
+         str="no connection";
+         break;
+      case TRADE_RETCODE_ONLY_REAL:
+         str="only real";
+         break;
+      case TRADE_RETCODE_LIMIT_ORDERS:
+         str="limit orders";
+         break;
+      case TRADE_RETCODE_LIMIT_VOLUME:
+         str="limit volume";
+         break;
+      case TRADE_RETCODE_POSITION_CLOSED:
+         str="position closed";
+         break;
+      case TRADE_RETCODE_INVALID_ORDER:
+         str="invalid order";
+         break;
+      case TRADE_RETCODE_CLOSE_ORDER_EXIST:
+         str="close order already exists";
+         break;
+      case TRADE_RETCODE_LIMIT_POSITIONS:
+         str="limit positions";
+         break;
       default:
          str="unknown retcode "+(string)result.retcode;
-         break;
      }
 //--- return the result
    return(str);
@@ -1514,34 +1559,34 @@ bool CTrade::FillingCheck(const string symbol)
 //+------------------------------------------------------------------+
 bool CTrade::ExpirationCheck(const string symbol)
   {
-   CSymbolInfo sym;
 //--- check symbol
-   if(!sym.Name((symbol==NULL)?Symbol():symbol))
-      return(false);
+   string symbol_name=(symbol==NULL) ? _Symbol : symbol;
 //--- get flags
-   int flags=sym.TradeTimeFlags();
+   long tmp_long;
+   int  flags=0;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_EXPIRATION_MODE,tmp_long))
+      flags=(int)tmp_long;
 //--- check type
    switch(m_request.type_time)
      {
       case ORDER_TIME_GTC:
          if((flags&SYMBOL_EXPIRATION_GTC)!=0)
-         return(true);
+            return(true);
          break;
       case ORDER_TIME_DAY:
          if((flags&SYMBOL_EXPIRATION_DAY)!=0)
-         return(true);
+            return(true);
          break;
       case ORDER_TIME_SPECIFIED:
          if((flags&SYMBOL_EXPIRATION_SPECIFIED)!=0)
-         return(true);
+            return(true);
          break;
       case ORDER_TIME_SPECIFIED_DAY:
          if((flags&SYMBOL_EXPIRATION_SPECIFIED_DAY)!=0)
-         return(true);
+            return(true);
          break;
       default:
          Print(__FUNCTION__+": Unknown expiration type");
-         break;
      }
 //--- failed
    return(false);
@@ -1553,11 +1598,12 @@ bool CTrade::OrderTypeCheck(const string symbol)
   {
    bool res=false;
 //--- check symbol
-   CSymbolInfo sym;
-   if(!sym.Name((symbol==NULL)?Symbol():symbol))
-      return(false);
+   string symbol_name=(symbol==NULL) ? _Symbol : symbol;
 //--- get flags of allowed trade orders
-   int flags=sym.OrderMode();
+   long tmp_long;
+   int  flags=0;
+   if(SymbolInfoInteger(symbol_name,SYMBOL_ORDER_MODE,tmp_long))
+      flags=(int)tmp_long;
 //--- depending on the type of order in request
    switch(m_request.type)
      {
@@ -1581,9 +1627,8 @@ bool CTrade::OrderTypeCheck(const string symbol)
          //--- check possibility of execution
          res=((flags&SYMBOL_ORDER_STOP_LIMIT)!=0);
          break;
-      default:
-         break;
      }
+//--- check res
    if(res)
      {
       //--- trading order is valid
@@ -1611,7 +1656,7 @@ bool CTrade::OrderTypeCheck(const string symbol)
 //+------------------------------------------------------------------+
 bool CTrade::OrderSend(const MqlTradeRequest &request,MqlTradeResult &result)
   {
-   bool res;
+   bool   res;
    string action="";
    string fmt   ="";
 //--- action
