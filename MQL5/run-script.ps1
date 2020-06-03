@@ -1,5 +1,10 @@
-#gets the File To Compile as an external parameter... Defaults to a Test file...
-Param( $cmd = "", $FileToCompile = "" )
+﻿#gets the File To Compile as an external parameter... Defaults to a Test file...
+#Param( $cmd = "", $FileToCompile = "" )
+
+#$cmd = 'C:/Program Files/MetaTrader 5 - EXNESS/metaeditor64.exe'
+#$FileToCompile = 'c:\Users\Administrator\AppData\Roaming\MetaQuotes\Terminal\78D61077B4C86688517531BD9FD69587\MQL5\Indicators\Tours\11th.mq5'
+
+Param($cmd = '', $FileToCompile = "")
 
 #cleans the terminal screen and sets the log file name...
 Clear-Host
@@ -35,7 +40,7 @@ $Log = Get-Content -Path $LogFile | Where-Object { $_ -ne "" } | Select-Object -
 
 #Green color for successful Compilation. Otherwise (error/warning), Red!
 $WhichColor = "Red"
-$Log | ForEach-Object { if ($_.Contains("0 errors, 0 warnings")) { $WhichColor = "Green" } }
+$Log | ForEach-Object { if ($_.Contains("0 error(s), 0 warning(s)")) { $WhichColor = "Green" } }
 
 #runs through all the log lines...
 $Log | ForEach-Object {

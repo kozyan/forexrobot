@@ -6,10 +6,10 @@
         {
             "label": "Compile-MQL",
             "type": "shell",
-            "command": "powershell",
+            "command": "", //20200603, 由于默认是 powershell 的终端，所以这里不用指定 'powershell'
             "args": [
-                "./Compile-MQL.ps1", 
-                "'C:\\Program Files\\MetaTrader 5 - EXNESS\\metaeditor64.exe'",
+                "./Compile-MQL.ps1",
+                "'C:/Program Files/MetaTrader 5 - EXNESS/metaeditor64.exe'",
                 "${file}"
             ],
             "presentation": {
@@ -24,7 +24,7 @@
                 "isDefault": true
             }
         },
-        {   //set the label ID for the MQL5 Reference context-sensitive help to be launched
+        { //set the label ID for the MQL5 Reference context-sensitive help to be launched
             "label": "launch_offline_help",
             "type": "shell",
             "presentation": {
